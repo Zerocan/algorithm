@@ -36,7 +36,7 @@ const insertionSort  = (arr) => {
   for (let i = 1; i < arr.length; i++) {
     const temp = arr[i];
     let j = i - 1;
-    // 若arr[i]前有大于arr[i]的值的化，向后移位，腾出空间，直到一个<=arr[i]的值
+    // 若arr[i]前有大于arr[i]的值的话，向后移位，腾出空间，直到一个<=arr[i]的值
     for (j; j >= 0; j--) {
       if (temp  < arr[j]) {
         arr[j + 1] = arr[j]
@@ -75,3 +75,7 @@ const selectionSort = (arr) => {
 };
 
 console.log('选择：', selectionSort([4, 8, 6, 3, 2, 1, 0, 12]));
+
+module.exports = {
+  insertionSort: insertionSort,
+};
