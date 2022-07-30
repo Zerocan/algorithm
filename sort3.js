@@ -149,7 +149,40 @@ const stableCountTestArr = [0, 2, 2, 1, 1, 1, 6, 8, 5];
 console.log('结果：', stableCountingSort(stableCountTestArr));
 
 // 基数排序
+// maxDigit数组中最大数的位数，例如 [1,10,100]的maxDigit为3
+const counter = [];
 const radixSort = (array, maxDigit) => {
-  
+  let mod = 10;
+  let dev = 1;
+
+  for (let i = 0; i < maxDigit; i++, dev *= 10, mod *= 10) {
+    // 把待排序的数组 array 中的每一位整数，插入对应的容器
+    for (let j = 0; j < array.length; j++) {
+      // 从个位开始，得到数组中每个数的每一位并保存在 bucket 变量中
+      // bucket 变量的值可能为 0 1 2 3 4 5 6 7 8 9
+      // 与之对应的 counter[bucket] 容器为 0 1 2 3 4 5 6 7 8 9
+      const bucket =  parseInt((array[j] % mod) / dev);
+      // 若容器还不存在，初始化
+      if (counter[bucket] == null) {
+        counter[bucket] = [];
+      }
+      counter[bucket].push(array[j]);
+    }
+
+    // 把counter[bucket]容器里的数据依次取出
+    let pos = 0;
+    for (let j = 0; j < counter.length; j++) {
+      let value = null;
+      if (counter[j] !== null) {
+        while((value = counter[j]?.shift()) != null) {
+          array[pos++] = value;
+        }
+      }
+    }
+  }
+  return array;
 };
+
+console.log('-------基数排序------');
+console.log(radixSort([99,15,48,75,46,37,90,100],3));
 

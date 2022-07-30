@@ -59,6 +59,9 @@ const partition = (arr, pivot, left, right) => {
 
 const quickSort = (arr, left, right) => {
   if (left < right) {
+    // 粗暴地直接选择第一个或者最后一个数据作为分区点，不考虑数据的特点
+    // 在某些情况下，排序的最坏情况时间复杂度是 O(n^2)。
+    // 可采用随机或三数取中法
     let pivot = right;
     let partitionIndex = partition(arr, pivot, left, right);
     quickSort(arr, left, partitionIndex - 1 < left ? left : partitionIndex - 1);
