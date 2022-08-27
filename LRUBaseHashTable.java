@@ -1,32 +1,32 @@
 import java.util.HashMap;
 public class LRUBaseHashTable<K, V> {
-	// Ä¬ÈÏÁ´±íÈİÁ¿
+	// é»˜è®¤é“¾è¡¨å®¹é‡
 	private final static Integer DEFAULT_CAPACITY = 10;
 	
-	// Í·½áµã
+	// å¤´ç»“ç‚¹
 	private DNode<K, V> headNode;
 	
-	// Î²½áµã
+	// å°¾ç»“ç‚¹
 	private DNode<K, V> tailNode;
 	
-	// Á´±í³¤¶È
+	// é“¾è¡¨é•¿åº¦
 	private Integer length;
 	
-	// Á´±íÈİÁ¿
+	// é“¾è¡¨å®¹é‡
 	private Integer capacity;
 	
-	// É¢ÁĞ±í´æ´¢key
+	// æ•£åˆ—è¡¨å­˜å‚¨key
 	private HashMap<K, DNode<K, V>> table;
 	
-	// Ë«ÏòÁ´±í
+	// åŒå‘é“¾è¡¨
 	static class DNode<K, V> {
 		private K key;
 		private V value;
 		
-		// Ç°ÇıÖ¸Õë
+		// å‰é©±æŒ‡é’ˆ
 		private DNode<K, V> prev;
 		
-		// ºó¼ÌÖ¸Õë
+		// åç»§æŒ‡é’ˆ
 		private DNode<K, V> next;
 		
 	    DNode() {}
@@ -73,7 +73,7 @@ public class LRUBaseHashTable<K, V> {
         }
 	}
 
-    // ½«ĞÂ½Úµã¼Óµ½Í·²¿
+    // å°†æ–°èŠ‚ç‚¹åŠ åˆ°å¤´éƒ¨
     public void addNode(DNode<K, V> newNode) {
         newNode.next = headNode.next;
         newNode.prev = headNode;
@@ -82,26 +82,26 @@ public class LRUBaseHashTable<K, V> {
         headNode.next = newNode;
     }
 
-    // µ¯³öÎ²²¿Êı¾İ½Úµã
+    // å¼¹å‡ºå°¾éƒ¨æ•°æ®èŠ‚ç‚¹
     private DNode<K, V> popTail() {
         DNode<K, V> node = tailNode.prev;
         removeNode(node);
         return node;
     }
 
-    // ÒÆ³ı½Úµã
+    // ç§»é™¤èŠ‚ç‚¹
     private void removeNode(DNode<K, V> node) {
         node.prev.next = node.next;
         node.next.prev = node.prev;
     }
 
-    // ½«½ÚµãÒÆ¶¯µ½Í·²¿
+    // å°†èŠ‚ç‚¹ç§»åŠ¨åˆ°å¤´éƒ¨
     private void moveToHead(DNode<K, V> node) {
         removeNode(node);
         addNode(node);
     }
 	
-    // »ñÈ¡½ÚµãÊı¾İ
+    // è·å–èŠ‚ç‚¹æ•°æ®
     public V get(K key) {
         DNode<K, V> node = table.get(key);
         if (node == null) {
@@ -112,7 +112,7 @@ public class LRUBaseHashTable<K, V> {
         return node.value;
     }
 
-    // ÒÆ³ı½ÚµãÊı¾İ
+    // ç§»é™¤èŠ‚ç‚¹æ•°æ®
     public void remove(K key) {
         DNode<K, V> node = table.get(key);
         if (node == null) {
