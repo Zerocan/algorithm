@@ -1,4 +1,4 @@
-// 计算莱文斯坦距离 动态规划
+// TODO 计算莱文斯坦距离 动态规划
 // 状态转移方程
 // 如果：a[i]!=b[j]，那么：min_edist(i, j)就等于：
 // min(min_edist(i-1,j)+1, min_edist(i,j-1)+1, min_edist(i-1,j-1)+1)
@@ -9,6 +9,10 @@
 const levenshteinDistance = (str1, str2) => {
   const m = str1.length;
   const n = str2.length;
+
+  if(!m || !n) {
+    return m || n
+  }
 
   // 初始化dp数组
   // const dp = new Array(m).fill(new Array(n).fill(Infinity)); 这种写法有问题，指针相同
