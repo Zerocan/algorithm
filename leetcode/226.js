@@ -35,9 +35,10 @@ var invertTree1 = function(root) {
   if (!root) {
     return root;
   }
-  [root.left, root,right] = [root.right, root.left];
-  invertTree1(root.left);
-  invertTree1(root.right);
+  // 交换左右节点
+  const rightNode = root.right;
+  root.right = invertTree1(root.left);
+  root.left = invertTree1(rightNode);
 
   return root;
 };
