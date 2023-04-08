@@ -11,7 +11,8 @@ var combine = function (n, k) {
       res.push([...path]);
       return;
     }
-    for (let i = startIndex; i <= n; i++) {
+    // 原先为 i <= n 剪枝优化后 i <= n - (k - path.length) + 1
+    for (let i = startIndex; i <= n - (k - path.length) + 1; i++) {
       path.push(i);
       backtracking(i + 1);
       path.pop();
