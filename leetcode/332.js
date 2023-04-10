@@ -26,7 +26,7 @@ var findItinerary = function (tickets) {
     }
     const nextCities = map[city]; // 获取下一站能去的城市list
     if (!nextCities || nextCities.length == 0) { // 没有邻接城市了
-      return false; // 还没用光机票，就没有下一站了，返回false
+      return false; // 还没用光机票，就没有下一站了，返回false，进行回溯
     }
     for (let i = 0; i < nextCities.length; i++) {
       const next = nextCities[i]; // 当前选择的下一站
