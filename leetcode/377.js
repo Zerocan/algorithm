@@ -6,8 +6,9 @@
 var combinationSum4 = function (nums, target) {
   const dp = new Array(target + 1).fill(0);
   dp[0] = 1;
-  for (let j = 1; j <= target; j++) {
-    for (let i = 0; i < nums.length; i++) {
+  // 排列
+  for (let j = 1; j <= target; j++) { // 先背包
+    for (let i = 0; i < nums.length; i++) { // 后物品
       if (j >= nums[i]) {
         dp[j] += dp[j - nums[i]];
       }
